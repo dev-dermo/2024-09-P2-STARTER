@@ -1,7 +1,7 @@
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import sequelize from "./config/connections.js";
+import sequelize from "./config/connection.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,10 +17,6 @@ app.get("/api/test", (req, res) => {
   res.json({
     message: "Hello from the server!",
   });
-});
-
-app.get("/test", (req, res) => {
-  res.send("Hello from the server!");
 });
 
 if (process.env.NODE_ENV === "production") {
