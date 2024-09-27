@@ -18,7 +18,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "client/src/**/*.{js,jsx}": [
+    "client/src/**/*.{ts,jsx}": [
       "cd client && eslint --fix",
       "prettier --write"
     ],

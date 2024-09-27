@@ -1,5 +1,12 @@
-const me = "test";
-const otherTest = "test2";
-const test = "test3";
-const test4 = "test4";
-const test5 = "test5";
+import express from "express";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+app.listen(PORT, () =>
+  console.log(`Server is running on port http://localhost:${PORT}`),
+);
