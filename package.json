@@ -14,15 +14,16 @@
     "client:dev": "cd client && npm run dev",
     "build": "cd server && npm run build",
     "seed": "cd server && npm run seed",
-    "render-build": "npm install && npm run build"
+    "render-build": "npm install && npm run build",
+    "prepare": "husky"
   },
   "lint-staged": {
     "client/src/**/*.{js,jsx}": [
-      "eslint --fix",
+      "cd client && eslint --fix",
       "git add"
     ],
     "server/**/*.{js,jsx}": [
-      "eslint --fix",
+      "cd server && eslint --fix",
       "git add"
     ],
     "**/*": "prettier --write --ignore-unknown"
