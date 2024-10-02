@@ -3,7 +3,7 @@ import "dotenv/config";
 
 const sequelize =
   process.env.NODE_ENV === "production"
-    ? new Seqeulize(process.env.DATABASE_URL)
+    ? new Seqeulize(process.env.DB_URL)
     : new Seqeulize(
         process.env.DB_NAME,
         process.env.DB_USER,
@@ -11,6 +11,7 @@ const sequelize =
         {
           host: "localhost",
           dialect: "postgres",
+          logging: false,
         },
       );
 

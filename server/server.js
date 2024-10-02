@@ -1,7 +1,9 @@
 import express from "express";
 import path from "node:path";
+import morgan from "morgan";
 import { fileURLToPath } from "node:url";
 import sequelize from "./config/connection.js";
+import routes from "./routes/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,13 +13,10 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 app.use(express.static("../client/dist"));
 
-app.get("/api/test", (req, res) => {
-  res.json({
-    message: "Hello from the server!",
-  });
-});
+app.use(routes);
 
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
@@ -26,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 (async () => {
-  await sequelize.sync({ force: true }); // NOTE: Change to false when you have finalized your models
+  await sequelize.sync({ force: false }); // NOTE: Change to false when you have finalized your models
   app.listen(PORT, () =>
     console.log(`Server is running on port http://localhost:${PORT}`),
   );
